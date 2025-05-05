@@ -2,8 +2,6 @@
 ````
 # MySQL Database Operations with Python – `mydb.py`
 
-This project demonstrates how to connect Python with a MySQL database to perform basic operations like creating databases, creating tables, inserting data, and retrieving data using `mysql-connector-python`.
-
 ---
 
 ## 📌 Features
