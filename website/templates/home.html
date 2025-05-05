@@ -1,63 +1,83 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<div class="col-md-6 offset-md-3">
+<div class="container-fluid">
     {% if user.is_authenticated %}
-    <h1>Hey, {{ user.first_name }}</h1>
-
-    <h2>Records...</h2>
-    {% if records %}
-    <table class="table">
-        <thead class="table-dark">
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Email</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Address</th>
-            <th scope="col">City</th>
-            <th scope="col">State</th>
-            <th scope="col">Zipcode</th>
-          </tr>
-        </thead>
-        <tbody>
-            {% for record in records %}
-            <tr>
-                <td><a href="{% url 'record' record.id %}">{{record.id}}</td>
-                <td><a href="{% url 'record' record.id %}">{{record.first_name}}</td>
-                <td>{{record.last_name}}</td>
-                <td>{{record.email}}</td>
-                <td>{{record.phone}}</td>
-                <td>{{record.address}}</td>
-                <td>{{record.city}}</td>
-                <td>{{record.state}}</td>
-                <td>{{record.zipcode}}</td>
-                <br/><br/>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% else %}
-    <h3>No records found</h3>
-    {% endif %}
-
-
-    {% else %}
-    <h1>Login</h1>
-    <br />
-    <form action="{% url 'home' %}" method="post">
-        {% csrf_token %}
-        <div class="mb-3">
-            <input type="text" class="form-control" name="username" placeholder="Username" required>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold">Welcome, {{ user.first_name }}</h2>
+            <a href="{% url 'add_record' %}" class="btn btn-success">+ Add New Record</a>
         </div>
-        <br />
-        <div class="mb-3">
-            <input type="password" class="form-control" name="password" placeholder="Password" required>
+
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Customer Records</h5>
+            </div>
+            <div class="card-body p-0">
+                {% if records %}
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0 align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">City</th>
+                                    <th scope="col">State</th>
+                                    <th scope="col">Zip</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for record in records %}
+                                    <tr>
+                                        <td><a href="{% url 'record' record.id %}" class="text-decoration-none">{{ record.id }}</a></td>
+                                        <td><a href="{% url 'record' record.id %}" class="text-decoration-none">{{ record.first_name }}</a></td>
+                                        <td>{{ record.last_name }}</td>
+                                        <td>{{ record.email }}</td>
+                                        <td>{{ record.phone }}</td>
+                                        <td>{{ record.address }}</td>
+                                        <td>{{ record.city }}</td>
+                                        <td>{{ record.state }}</td>
+                                        <td>{{ record.zipcode }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="p-3">
+                        <p class="text-muted">No records found.</p>
+                    </div>
+                {% endif %}
+            </div>
         </div>
-        <br />
-        <button type="submit" class="btn btn-secondary">Submit</button>
-    </form>
+
+    {% else %}
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow border-0">
+                    <div class="card-header text-black">
+                        <h4 class="mb-0">Login</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{% url 'home' %}" method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label class="form-label">Username</label>
+                                <input type="text" class="form-control" name="username" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endif %}
 </div>
-
 {% endblock content %}
