@@ -1,18 +1,5 @@
 # django-CRM
 
-# MySQL Database Operations with Python – `mydb.py`
-
----
-
-## 📌 Features
-
-- Connect to MySQL server
-- Create databases and tables
-- Insert, fetch, update, and delete records
-- Print database outputs to console
-
----
-
 ## 🛠️ Requirements
 
 - Python 3.x
