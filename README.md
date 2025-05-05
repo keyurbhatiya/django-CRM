@@ -1,5 +1,5 @@
 # django-CRM
-````
+
 # MySQL Database Operations with Python – `mydb.py`
 
 ---
@@ -27,7 +27,8 @@
    ```bash
    git clone https://github.com/keyurbhatiya/django-CRM.git
    cd django-CRM
-````
+   ```
+
 
 2. **Install Required Python Package**
 
